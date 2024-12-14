@@ -365,7 +365,7 @@ void MainWindow::setupLineStyleDemo(QCustomPlot *customPlot)
 void MainWindow::setupScatterPixmapDemo(QCustomPlot *customPlot)
 {
   demoName = "Scatter Pixmap Demo";
-  customPlot->axisRect()->setBackground(QPixmap("./solarpanels.jpg"));
+  customPlot->axisRect()->setBackground(QPixmap(":/solarpanels.jpg"));
   customPlot->addGraph();
   customPlot->graph()->setLineStyle(QCPGraph::lsLine);
   QPen pen;
@@ -374,7 +374,7 @@ void MainWindow::setupScatterPixmapDemo(QCustomPlot *customPlot)
   pen.setWidthF(2.5);
   customPlot->graph()->setPen(pen);
   customPlot->graph()->setBrush(QBrush(QColor(255,200,20,70)));
-  customPlot->graph()->setScatterStyle(QCPScatterStyle(QPixmap("./sun.png")));
+  customPlot->graph()->setScatterStyle(QCPScatterStyle(QPixmap(":/sun.png")));
   // set graph name, will show up in legend next to icon:
   customPlot->graph()->setName("Data from Photovoltaic\nenergy barometer 2011");
   // set data:
@@ -474,7 +474,7 @@ void MainWindow::setupTextureBrushDemo(QCustomPlot *customPlot)
   redDotPen.setColor(QColor(170, 100, 100, 180));
   redDotPen.setWidthF(2);
   customPlot->graph(0)->setPen(redDotPen);
-  customPlot->graph(0)->setBrush(QBrush(QPixmap("./balboa.jpg"))); // fill with texture of specified image
+  customPlot->graph(0)->setBrush(QBrush(QPixmap(":/balboa.jpg"))); // fill with texture of specified image
   
   customPlot->addGraph();
   customPlot->graph(1)->setPen(QPen(Qt::red));
@@ -527,7 +527,7 @@ void MainWindow::setupMultiAxisDemo(QCustomPlot *customPlot)
   // will contain left maxwell-like function
   customPlot->addGraph(customPlot->yAxis, customPlot->xAxis);
   customPlot->graph(0)->setPen(QPen(QColor(255, 100, 0)));
-  customPlot->graph(0)->setBrush(QBrush(QPixmap("./balboa.jpg"))); // fill with texture of specified image
+  customPlot->graph(0)->setBrush(QBrush(QPixmap(":/balboa.jpg"))); // fill with texture of specified image
   customPlot->graph(0)->setLineStyle(QCPGraph::lsLine);
   customPlot->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssDisc, 5));
   customPlot->graph(0)->setName("Left maxwell function");
@@ -536,7 +536,7 @@ void MainWindow::setupMultiAxisDemo(QCustomPlot *customPlot)
   // will contain bottom maxwell-like function with error bars
   customPlot->addGraph();
   customPlot->graph(1)->setPen(QPen(Qt::red));
-  customPlot->graph(1)->setBrush(QBrush(QPixmap("./balboa.jpg"))); // same fill as we used for graph 0
+  customPlot->graph(1)->setBrush(QBrush(QPixmap(":/balboa.jpg"))); // same fill as we used for graph 0
   customPlot->graph(1)->setLineStyle(QCPGraph::lsStepCenter);
   customPlot->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::red, Qt::white, 7));
   customPlot->graph(1)->setName("Bottom maxwell function");
