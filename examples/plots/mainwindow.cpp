@@ -1387,6 +1387,8 @@ void MainWindow::setupPolarPlotDemo(QCustomPlot *customPlot)
 {
   // Warning: Polar plots are a still a tech preview
   
+  demoName = "Polar Charts Demo";
+  
   customPlot->plotLayout()->clear();
   QCPPolarAxisAngular *angularAxis = new QCPPolarAxisAngular(customPlot);
   customPlot->plotLayout()->addElement(0, 0, angularAxis);
