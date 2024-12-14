@@ -83,6 +83,9 @@ public:
   
   void setupPlayground(QCustomPlot *customPlot);
   
+protected: 
+  void keyPressEvent(QKeyEvent *event) override;
+
 private slots:
   void realtimeDataSlot();
   void bracketDataSlot();

@@ -85,6 +85,40 @@ MainWindow::MainWindow(QWidget *parent) :
   //QTimer::singleShot(4000, this, SLOT(screenShot()));
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+  auto change_tab = [this](int change){
+    int MAX_TAB = 20;
+    auto _tab = currentDemoIndex + change;
+    if(_tab <0) _tab = MAX_TAB;
+    if(_tab > MAX_TAB) _tab = 0;
+
+    if (dataTimer.isActive())
+      dataTimer.stop();
+    dataTimer.disconnect();
+    delete ui->customPlot;
+    ui->customPlot = new QCustomPlot(ui->centralWidget);
+    ui->verticalLayout->addWidget(ui->customPlot);
+    setupDemo(_tab);
+  };
+
+  if (event->key() == Qt::Key_Left) {
+      qDebug() << "MINUS";
+      change_tab(-1);
+  } else if (event->key() == Qt::Key_Right) {
+      qDebug() << "PLUS";
+      change_tab(+1);
+  } else if (event->key() == Qt::Key_F3) {
+      qDebug() << "screenShot";
+      screenShot();
+  } else if (event->key() == Qt::Key_F4) {
+      qDebug() << "all screenShot";
+      allScreenShots();
+  } else {
+      QWidget::keyPressEvent(event);
+  }
+}
+
 void MainWindow::setupDemo(int demoIndex)
 {
   switch (demoIndex)
@@ -1388,7 +1422,7 @@ void MainWindow::setupPolarPlotDemo(QCustomPlot *customPlot)
   // Warning: Polar plots are a still a tech preview
   
   demoName = "Polar Charts Demo";
-  
+
   customPlot->plotLayout()->clear();
   QCPPolarAxisAngular *angularAxis = new QCPPolarAxisAngular(customPlot);
   customPlot->plotLayout()->addElement(0, 0, angularAxis);
@@ -1519,6 +1553,11 @@ void MainWindow::screenShot()
 #endif
   QString fileName = demoName.toLower()+".png";
   fileName.replace(" ", "");
+  
+  QString folderPath = "./screenshots/"; 
+  QDir dir;
+  if (!dir.exists(folderPath)) dir.mkpath(folderPath);
+
   pm.save("./screenshots/"+fileName);
   qApp->quit();
 }
